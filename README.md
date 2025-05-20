@@ -50,7 +50,7 @@ Truy cập vào `http://localhost:5000` để sử dụng giao diện web.
 
 ### Trang Chủ
 
-<img src="src/data/img/img_trangchu.png" alt="Trang chủ hệ thống" width="500"/>
+<img src="src/data/img/img_trangchu.png" alt="Trang chủ hệ thống" width="800"/>
 
 ### Chi Tiết Vi Phạm
 
@@ -63,7 +63,3 @@ Truy cập vào `http://localhost:5000` để sử dụng giao diện web.
 ### Thông Báo Discord
 
 <img src="src/data/img/img_discord.jpg" alt="Thông báo qua Discord" width="300"/>
-
-## Giấy Phép
-
-Dự án được phát hành theo giấy phép MIT.
