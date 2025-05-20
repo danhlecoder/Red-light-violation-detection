@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#1a56db">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>Hệ Thống Giám Sát Giao Thông</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <div class="container">        <!-- Header -->
+        <header class="header">
+            <div class="logo">
+                <i class="fas fa-traffic-light"></i>
+                <h1>HỆ THỐNG GIÁM SÁT GIAO THÔNG</h1>
+            </div>
+            <div class="header-actions">
+                <button class="btn btn-outline"><i class="fas fa-eye"></i> Xem trực tiếp</button>
+                <button class="btn btn-primary"><i class="fas fa-cloud-upload-alt"></i> Tải video lên</button>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <div class="content">
+            <!-- Left Section - Video Monitoring -->
+            <div class="monitoring-section">
+                <div class="section-header">
+                    <i class="fas fa-video"></i>
+                    <h2>Màn hình giám sát</h2>
+                </div>                <div class="video-container">
+                    <div class="video-stream">
+                        <div class="live-indicator">
+                            <span class="pulse"></span> Đang giám sát
+                        </div>                        <div class="edit-btn" title="Cài đặt vùng nhận diện">
+                            <i class="fas fa-draw-polygon"></i>
+                        </div>
+                        <div class="boundary-menu">
+                            <div class="boundary-menu-header">
+                                <h3>Cài đặt vùng nhận diện</h3>
+                                <button class="close-menu"><i class="fas fa-times"></i></button>
+                            </div>
+                            <div class="boundary-menu-options">
+                                <button class="boundary-btn" data-type="line">
+                                    <i class="fas fa-grip-lines-vertical"></i>
+                                    <span>Vẽ biên thẳng</span>
+                                </button>
+                                <button class="boundary-btn" data-type="vehicle-polygon">
+                                    <i class="fas fa-car"></i>
+                                    <span>Vẽ biên đa giác phát hiện phương tiện</span>
+                                </button>
+                                <button class="boundary-btn" data-type="traffic-light-polygon">
+                                    <i class="fas fa-traffic-light"></i>
+                                    <span>Vẽ biên đa giác phát hiện trạng thái đèn</span>
+                                </button>
+                                <button class="boundary-btn" data-type="save">
+                                    <i class="fas fa-save"></i>
+                                    <span>Lưu tọa độ biên</span>
+                                </button>
+                                <button class="boundary-btn" data-type="clear">
+                                    <i class="fas fa-trash-alt"></i>
+                                    <span>Xóa tọa độ biên</span>
+                                </button>
+                            </div>
+                        </div>
+                        <video id="traffic-video" poster="https://via.placeholder.com/800x450/111827/FFFFFF?text=Camera+Giao+Thông" autoplay muted loop></video>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Section - Statistics & Info -->
+            <div class="info-section">
+                <!-- Vehicle Statistics -->
+                <div class="section-card">
+                    <div class="section-header">
+                        <i class="fas fa-chart-bar"></i>
+                        <h2>Thống kê phương tiện</h2>
+                    </div>
+                    <div class="vehicle-stats">
+                        <div class="stat-card">
+                            <div class="icon-container car">
+                                <i class="fas fa-car"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h3>38</h3>
+                                <p>Ô tô</p>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="icon-container motorcycle motorbike">
+                                <i class="fas fa-motorcycle"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h3>127</h3>
+                                <p>Xe máy</p>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="icon-container truck">
+                                <i class="fas fa-truck"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h3>15</h3>
+                                <p>Xe tải</p>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="icon-container bus">
+                                <i class="fas fa-bus"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h3>7</h3>
+                                <p>Xe buýt</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Traffic Light Status -->
+                <div class="section-card">
+                    <div class="section-header">
+                        <i class="fas fa-traffic-light"></i>
+                        <h2>Trạng thái đèn giao thông</h2>
+                    </div>
+                    <div class="traffic-light-status">
+                        <div class="light-container">
+                            <div class="light red active"></div>
+                            <span>Đèn đỏ</span>
+                        </div>
+                        <div class="light-container">
+                            <div class="light yellow"></div>
+                            <span>Đèn vàng</span>
+                        </div>
+                        <div class="light-container">
+                            <div class="light green"></div>
+                            <span>Đèn xanh</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bottom Section - Violations & Export -->
+        <div class="violations-section">
+            <div class="section-header warning">
+                <i class="fas fa-exclamation-triangle"></i>
+                <h2>Phương tiện vượt đèn đỏ</h2>
+            </div>
+
+            <div class="table-actions">
+                <div class="export-buttons">
+                    <button class="btn btn-export"><i class="fas fa-file-csv"></i> Xuất CSV</button>
+                    <button class="btn btn-export"><i class="fas fa-file-pdf"></i> Xuất PDF</button>
+                </div>
+                <div class="search-bar">
+                    <input type="text" placeholder="Tìm kiếm vi phạm...">
+                    <button class="btn btn-search"><i class="fas fa-search"></i></button>
+                </div>
+            </div>
+
+            <!-- Violations Stats Cards -->
+            <div class="violations-stats">
+                <div class="violation-cards-container" id="violations-cards-container">
+                    <!-- Thẻ trạng thái tổng hợp -->
+                    <div class="violation-stats-summary">
+                        <div class="stat-card violation-summary" id="pending-violations-filter">
+                            <div class="icon-container violation-icon">
+                                <i class="fas fa-exclamation-circle"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h3 id="total-violations">0</h3>
+                                <p>Đang chờ</p>
+                            </div>
+                        </div>
+                        <div class="stat-card violation-confirmed" id="confirmed-violations-filter">
+                            <div class="icon-container confirmed-icon">
+                                <i class="fas fa-check-circle"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h3 id="confirmed-violations">0</h3>
+                                <p>Đã xác nhận</p>
+                            </div>
+                        </div>
+                    </div>
+                
+                    <!-- Các stats cards của vi phạm sẽ được thêm vào đây -->
+                    <div class="violations-grid" id="violations-grid">
+                        <!-- Cards sẽ được thêm động bằng JavaScript -->
+                        <div class="no-violations">
+                    <i class="fas fa-info-circle"></i>
+                    <p>Không có dữ liệu vi phạm</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pagination">
+                <button class="pagination-btn prev"><i class="fas fa-chevron-left"></i></button>
+                <div class="pagination-info">Trang 1/1</div>
+                <button class="pagination-btn next"><i class="fas fa-chevron-right"></i></button>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>© 2024 - Hệ thống Giám sát Giao thông | Phát triển bởi Nhóm Danh Khoa</p>
+        </footer>
+    </div>    <!-- Load upload_video.js first since it defines functions used by script.js -->
+    <script src="/static/js/upload_video.js"></script>
+    <script src="/static/js/script.js"></script>
+</body>
+</html>
